@@ -1,4 +1,4 @@
-package com.mxz.bluetoothchat
+package com.mxz.blue.chat
 
 import android.Manifest
 import android.annotation.SuppressLint

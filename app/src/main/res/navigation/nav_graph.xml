@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/clientFragment"
-        android:name="com.mxz.bluetoothchat.ClientFragment"
+        android:name="com.mxz.blue.chat.ClientFragment"
         android:label="@string/client_fragment_label"
         tools:layout="@layout/fragment_client">
 
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mxz.bluetoothchat.HomeFragment"
+        android:name="com.mxz.blue.chat.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
 
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/serverFragment"
-        android:name="com.mxz.bluetoothchat.ServerFragment"
+        android:name="com.mxz.blue.chat.ServerFragment"
         android:label="@string/server_fragment_label"
         tools:layout="@layout/fragment_server" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/conversationFragment"
-        android:name="com.mxz.bluetoothchat.ConversationFragment"
+        android:name="com.mxz.blue.chat.ConversationFragment"
         android:label="@string/conversation_fragment_label"
         tools:layout="@layout/fragment_conversation" />
 </navigation>

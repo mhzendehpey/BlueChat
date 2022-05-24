@@ -1,4 +1,4 @@
-package com.mxz.bluetoothchat
+package com.mxz.blue.chat
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mxz.bluetoothchat.databinding.FragmentConversationBinding
+import com.mxz.blue.chat.databinding.FragmentConversationBinding
 import java.util.*
 
 class ConversationFragment : Fragment() {

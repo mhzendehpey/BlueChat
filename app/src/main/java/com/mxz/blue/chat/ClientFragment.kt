@@ -1,4 +1,4 @@
-package com.mxz.bluetoothchat
+package com.mxz.blue.chat
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
@@ -17,7 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
-import com.mxz.bluetoothchat.databinding.FragmentClientBinding
+import com.mxz.blue.chat.databinding.FragmentClientBinding
 
 class ClientFragment : Fragment() {
 

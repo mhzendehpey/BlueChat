@@ -1,4 +1,4 @@
-package com.mxz.bluetoothchat
+package com.mxz.blue.chat
 
 import java.util.*
 

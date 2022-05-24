@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bluetooth Chat</string>
+    <string name="app_name">BlueChat</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="client_fragment_label">Client</string>

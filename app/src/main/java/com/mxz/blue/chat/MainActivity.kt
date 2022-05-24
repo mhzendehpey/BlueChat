@@ -1,4 +1,4 @@
-package com.mxz.bluetoothchat
+package com.mxz.blue.chat
 
 import android.Manifest
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import com.mxz.bluetoothchat.databinding.ActivityMainBinding
+import com.mxz.blue.chat.databinding.ActivityMainBinding
 
 const val REQUEST_LOCATION_PERMISSION = 544
 

@@ -1,4 +1,4 @@
-package com.mxz.bluetoothchat
+package com.mxz.blue.chat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.mxz.bluetoothchat.databinding.FragmentHomeBinding
+import com.mxz.blue.chat.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
