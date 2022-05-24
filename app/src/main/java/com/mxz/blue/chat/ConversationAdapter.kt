@@ -43,7 +43,8 @@ class ConversationAdapter(private val mData: MutableList<Message>) :
       val root = itemView.findViewById<LinearLayout>(R.id.root)
 
       tvMessage.text = message.message
-      tvSender.text = Resources.getSystem().getString(R.string.sender_name, message.sender)
+      val senderText = message.sender + ":"
+      tvSender.text = senderText
       val sdf = SimpleDateFormat("yyyy/MM/dd-HH:mm", Locale.getDefault()).format(message.date)
       tvDate.text = sdf
 

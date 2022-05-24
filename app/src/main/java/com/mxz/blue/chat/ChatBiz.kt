@@ -17,12 +17,12 @@ import java.util.*
 
 
 val SERVICE_UUID: UUID = UUID.fromString("b3d076e6-69bb-478f-87a6-8f36ecd52603")
-const val ACT_CLIENT_CONNECTED = "com.mxz.bluetoothChat.action.ACT_CLIENT_CONNECTED"
-const val ACT_SERVER_LISTENING = "com.mxz.bluetoothChat.action.ACT_SERVER_LISTENING"
-const val ACT_SERVER_ACCEPTED = "com.mxz.bluetoothChat.action.ACT_SERVER_ACCEPTED"
-const val ACT_MESSAGE_READ = "com.mxz.bluetoothChat.action.ACT_MESSAGE_READ"
-const val ACT_MESSAGE_WRITE_SUCCEED = "com.mxz.bluetoothChat.action.ACT_MESSAGE_WRITE_SUCCEED"
-const val ACT_MESSAGE_WRITE_FAILED = "com.mxz.bluetoothChat.action.ACT_MESSAGE_WRITE_FAILED"
+const val ACT_CLIENT_CONNECTED = "com.mxz.blue.chat.action.ACT_CLIENT_CONNECTED"
+const val ACT_SERVER_LISTENING = "com.mxz.blue.chat.action.ACT_SERVER_LISTENING"
+const val ACT_SERVER_ACCEPTED = "com.mxz.blue.chat.action.ACT_SERVER_ACCEPTED"
+const val ACT_MESSAGE_READ = "com.mxz.blue.chat.action.ACT_MESSAGE_READ"
+const val ACT_MESSAGE_WRITE_SUCCEED = "com.mxz.blue.chat.action.ACT_MESSAGE_WRITE_SUCCEED"
+const val ACT_MESSAGE_WRITE_FAILED = "com.mxz.blue.chat.action.ACT_MESSAGE_WRITE_FAILED"
 
 const val TAG = "BT_CHAT"
 
