@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Bluetooth Chat</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="client_fragment_label">Client</string>
+    <string name="home_fragment_label">Home</string>
+    <string name="server_fragment_label">Server</string>
+    <string name="conversation_fragment_label">Conversation</string>
+    <string name="create_a_new_server">Create a New Server</string>
+    <string name="or">Or</string>
+    <string name="join_an_existing_server">Join an Existing Server</string>
+    <string name="make_it_discoverable_again">Make It Discoverable Again</string>
+    <string name="available_devices">Available Devices:</string>
+    <string name="retry">Retry</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="discoverability_counter_text">
+        Your device is discoverable for: %1$d
+    </string>
+
+    <string name="no_longer_discoverable">
+        Your device is no longer discoverable.
+    </string>
+
+    <string name="sender_name">
+        %1$s:
+    </string>
+
+</resources>

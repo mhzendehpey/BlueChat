@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/clientFragment"
+        android:name="com.mxz.bluetoothchat.ClientFragment"
+        android:label="@string/client_fragment_label"
+        tools:layout="@layout/fragment_client">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_clientFragment_to_conversationFragment"
+            app:destination="@id/conversationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mxz.bluetoothchat.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/clientFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_serverFragment"
+            app:destination="@id/serverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serverFragment"
+        android:name="com.mxz.bluetoothchat.ServerFragment"
+        android:label="@string/server_fragment_label"
+        tools:layout="@layout/fragment_server" >
+        <action
+            android:id="@+id/action_serverFragment_to_SecondFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_serverFragment_to_conversationFragment"
+            app:destination="@id/conversationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/conversationFragment"
+        android:name="com.mxz.bluetoothchat.ConversationFragment"
+        android:label="@string/conversation_fragment_label"
+        tools:layout="@layout/fragment_conversation" />
+</navigation>
