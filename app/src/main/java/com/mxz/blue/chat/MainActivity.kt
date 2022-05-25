@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     appBarConfiguration = AppBarConfiguration(navController.graph)
     setupActionBarWithNavController(navController, appBarConfiguration)
 
+    snackbar = Snackbar.make(binding.root, "", Snackbar.LENGTH_LONG)
+
     enableBluetooth()
 
     requestPermissions(
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
     updateStatus(status, Snackbar.LENGTH_INDEFINITE)
   }
 
-  private fun updateStatus(status: String, snackBarLength: Int) {
+  fun updateStatus(status: String, snackBarLength: Int) {
     snackbar = Snackbar.make(binding.root, status, snackBarLength)
     snackbar.show()
   }

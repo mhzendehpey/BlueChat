@@ -1,6 +1,5 @@
 package com.mxz.blue.chat
 
-import android.content.res.Resources
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View

@@ -12,12 +12,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.launch
 import androidx.navigation.fragment.findNavController
 import com.mxz.blue.chat.databinding.FragmentServerBinding
 
 
 class ServerFragment : Fragment() {
+
+  private lateinit var launcher: ActivityResultLauncher<Unit>
 
   // region Properties
   private var _binding: FragmentServerBinding? = null
@@ -37,7 +41,12 @@ class ServerFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     _binding = FragmentServerBinding.inflate(inflater, container, false)
-
+    launcher = registerForActivityResult(BtDiscoveryContract()) {
+      if (it == Activity.RESULT_OK) {
+        startTimer()
+        binding.btnDiscoverable.visibility = View.INVISIBLE
+      }
+    }
     return binding.root
   }
 
@@ -92,22 +101,15 @@ class ServerFragment : Fragment() {
   // endregion
 
   // region Methods
+  class BtDiscoveryContract : ActivityResultContract<Unit, Int>() {
+    override fun createIntent(context: Context, input: Unit?): Intent =
+      Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE)
+
+    override fun parseResult(resultCode: Int, intent: Intent?): Int = Activity.RESULT_OK
+  }
 
   private fun enableDiscoverability() {
-    class BtDiscoveryContract : ActivityResultContract<Unit, Int>() {
-      override fun createIntent(context: Context, input: Unit?): Intent =
-        Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE)
-
-      override fun parseResult(resultCode: Int, intent: Intent?): Int = Activity.RESULT_OK
-    }
-
-    val launcher = registerForActivityResult(BtDiscoveryContract()) {
-      if (it == Activity.RESULT_OK) {
-        startTimer()
-        binding.btnDiscoverable.visibility = View.INVISIBLE
-      }
-    }
-    launcher.launch(Unit)
+    launcher.launch()
   }
 
   private fun startTimer(duration: Long = 120L) {

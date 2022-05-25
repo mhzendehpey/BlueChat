@@ -24,6 +24,8 @@ const val ACT_MESSAGE_READ = "com.mxz.blue.chat.action.ACT_MESSAGE_READ"
 const val ACT_MESSAGE_WRITE_SUCCEED = "com.mxz.blue.chat.action.ACT_MESSAGE_WRITE_SUCCEED"
 const val ACT_MESSAGE_WRITE_FAILED = "com.mxz.blue.chat.action.ACT_MESSAGE_WRITE_FAILED"
 
+const val BLUETOOTH_CONNECT_REQ = 8621
+
 const val TAG = "BT_CHAT"
 
 class ChatBiz(
@@ -55,7 +57,10 @@ class ChatBiz(
           Manifest.permission.BLUETOOTH_SCAN
         ) != PackageManager.PERMISSION_GRANTED
       ) {
-        activity.requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_SCAN), 254)
+        activity.requestPermissions(
+          arrayOf(Manifest.permission.BLUETOOTH_SCAN),
+          BLUETOOTH_CONNECT_REQ
+        )
       }
     }
 
@@ -134,6 +139,7 @@ class ChatBiz(
     }
 
     fun cancel() {
+
       try {
         mmServerSocket.close()
       } catch (e: IOException) {
