@@ -25,5 +25,6 @@
     <string name="sender_name">
         %1$s:
     </string>
+    <string name="image">image</string>
 
 </resources>

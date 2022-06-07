@@ -115,7 +115,6 @@ class ServerFragment : Fragment() {
   private fun startTimer(duration: Long = 120L) {
     timer = object : CountDownTimer(120 * 1000L, 1000L) {
       override fun onTick(millisToFinished: Long) {
-//        binding.tvCounter.text = "Your device is discoverable for: ${millisToFinished / 1000}"
         binding.tvCounter.text = getString(R.string.discoverability_counter_text, millisToFinished / 1000)
         binding.tvCounter.visibility = View.VISIBLE
       }

@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import com.mxz.blue.chat.databinding.FragmentClientBinding
@@ -100,7 +99,6 @@ class ClientFragment : Fragment() {
         BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
           dismissStatus()
           binding.btnRetry.isEnabled = true
-          Toast.makeText(context, "Discovery Finished", Toast.LENGTH_SHORT).show()
           binding.progressBar.visibility = View.INVISIBLE
         }
         ACT_CLIENT_CONNECTED -> {

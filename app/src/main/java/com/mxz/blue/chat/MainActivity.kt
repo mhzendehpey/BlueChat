@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var binding: ActivityMainBinding
-  private lateinit var snackbar: Snackbar
+  private lateinit var snackBar: Snackbar
 
   // endregion
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     appBarConfiguration = AppBarConfiguration(navController.graph)
     setupActionBarWithNavController(navController, appBarConfiguration)
 
-    snackbar = Snackbar.make(binding.root, "", Snackbar.LENGTH_LONG)
+    snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_LONG)
 
     enableBluetooth()
 
@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
 
   // region Methods
   private fun enableBluetooth() {
-//    updateStatus("Turning On Bluetooth", Snackbar.LENGTH_SHORT)
     val chatBiz = ChatBiz.getInstance(this, this)
     chatBiz.enableBluetooth()
   }
@@ -87,12 +86,12 @@ class MainActivity : AppCompatActivity() {
   }
 
   fun updateStatus(status: String, snackBarLength: Int) {
-    snackbar = Snackbar.make(binding.root, status, snackBarLength)
-    snackbar.show()
+    snackBar = Snackbar.make(binding.root, status, snackBarLength)
+    snackBar.show()
   }
 
   fun dismissStatus() {
-    snackbar.dismiss()
+    snackBar.dismiss()
   }
 
   // endregion

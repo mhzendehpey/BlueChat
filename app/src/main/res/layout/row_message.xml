@@ -31,12 +31,21 @@
                 tools:text="Sender:" />
 
             <TextView
+                tools:visibility="gone"
                 android:id="@+id/tvMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 tools:text="PlaceHolder" />
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                tools:visibility="visible"
+                android:contentDescription="@string/image" />
 
             <TextView
                 android:id="@+id/tvDate"

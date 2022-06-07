@@ -4,18 +4,28 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mxz.blue.chat.databinding.FragmentConversationBinding
 import java.util.*
 
 class ConversationFragment : Fragment() {
+
+  private lateinit var selectImageLauncher: ActivityResultLauncher<String>
 
   // region Properties
   private var _binding: FragmentConversationBinding? = null
@@ -32,6 +42,11 @@ class ConversationFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     _binding = FragmentConversationBinding.inflate(inflater, container, false)
+
+    selectImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+      selectImage(it)
+    }
+
     return binding.root
   }
 
@@ -48,6 +63,11 @@ class ConversationFragment : Fragment() {
     binding.btnSend.setOnClickListener {
       sendMessage()
       binding.edtMessage.text.clear()
+    }
+
+    binding.btnSendImage.setOnClickListener {
+//      sendImageMessage()
+      selectImageLauncher.launch("image/*")
     }
 
     setUpBroadcastReceiver()
@@ -77,18 +97,17 @@ class ConversationFragment : Fragment() {
     override fun onReceive(context: Context, intent: Intent) {
       when (intent.action) {
         ACT_MESSAGE_READ -> {
-          val buffer = intent.getByteArrayExtra("buffer")!!
-          val numBytes = intent.getIntExtra("numBytes", -1)
-          val msg = String(buffer, 0, numBytes)
-          addMessage(msg, true)
+          onMessageReceived(intent, true)
         }
         ACT_MESSAGE_WRITE_SUCCEED -> {
-          val msg = intent.getStringExtra("message")!!
-          addMessage(msg, false)
+          onMessageReceived(intent, false)
         }
         ACT_MESSAGE_WRITE_FAILED -> {
           Toast.makeText(context, "Couldn't send data to the other device", Toast.LENGTH_SHORT)
             .show()
+        }
+        ACT_CONNECTION_LOST -> {
+          findNavController().navigateUp()
         }
       }
     }
@@ -98,22 +117,60 @@ class ConversationFragment : Fragment() {
 
   // region Methods
 
-  private fun addMessage(msg: String, isRemote: Boolean) {
-    if (isRemote) addRemoteMessage(msg) else addLocalMessage(msg)
+  private fun selectImage(uri: Uri?) {
+    uri?.let {
+      val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, uri))
+      } else {
+        MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
+      }
+      sendImageMessage(bitmap)
+    }
+  }
+
+  private fun onMessageReceived(intent: Intent, isRemote: Boolean) {
+    val buffer = intent.getByteArrayExtra("buffer")!!
+    val numBytes = intent.getIntExtra("numBytes", -1)
+    val messageDataType = intent.getSerializableExtra("msg_type")!! as MessageDataType
+    addMessage(buffer, numBytes, messageDataType, isRemote)
+  }
+
+  private fun addMessage(
+    bytes: ByteArray,
+    numBytes: Int,
+    messageDataType: MessageDataType,
+    isRemote: Boolean
+  ) {
+    val message = Message(date = Calendar.getInstance().time)
+    val sender = if (isRemote) {
+      chatBiz.remoteDeviceName
+    } else {
+      "You"
+    }
+
+    message.sender = sender
+    message.dataType = messageDataType
+
+    when (messageDataType) {
+      MessageDataType.TYPE_TEXT -> {
+        val msg = String(bytes, 0, numBytes)
+        message.message = msg
+      }
+      MessageDataType.TYPE_IMAGE -> {
+        message.imageBytes = bytes
+      }
+    }
+    conversationAdapter.add(message)
     binding.rvConversation.scrollToPosition(conversationAdapter.itemCount - 1)
-  }
-
-  private fun addRemoteMessage(msg: String) {
-    conversationAdapter.add(Message(chatBiz.remoteDeviceName, msg, Calendar.getInstance().time))
-  }
-
-  private fun addLocalMessage(msg: String) {
-    conversationAdapter.add(Message("You", msg, Calendar.getInstance().time))
   }
 
   private fun sendMessage() {
     val message = binding.edtMessage.text.toString()
     chatBiz.sendMessage(message)
+  }
+
+  private fun sendImageMessage(bitmap: Bitmap) {
+    chatBiz.sendImageMessage(bitmap)
   }
 
   private fun dismissStatus() {

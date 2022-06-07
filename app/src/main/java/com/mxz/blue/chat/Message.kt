@@ -2,4 +2,16 @@ package com.mxz.blue.chat
 
 import java.util.*
 
-data class Message(val sender: String, val message: String, val date: Date)
+enum class MessageDataType {
+  TYPE_TEXT,
+  TYPE_IMAGE
+}
+
+data class Message(
+  var sender: String = "",
+  var message: String = "",
+  val date: Date,
+  var dataType: MessageDataType = MessageDataType.TYPE_TEXT
+) {
+  var imageBytes: ByteArray? = null
+}
